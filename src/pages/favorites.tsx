@@ -1,7 +1,21 @@
-import React from 'react';
+import { Divider, Typography } from '@mui/material';
+
+import useFavorites from '../data/hooks/useFavorites';
+import MovieGrid from '../widgets/movie-grid';
 
 const Favorites = () => {
-  return <h1>Favorites</h1>;
+  const { favorites } = useFavorites();
+
+  return (
+    <>
+      <Typography component="h1" fontWeight="bold">
+        FAVORITE
+      </Typography>
+      <Divider sx={{ m: 1 }} />
+
+      <MovieGrid movies={favorites} />
+    </>
+  );
 };
 
 export default Favorites;
