@@ -1,57 +1,39 @@
-import React, { useState } from 'react';
+import { Box, Divider, Pagination } from '@mui/material';
 
-import { Container, Divider, Grid } from '@mui/material';
-
-import { SearchResponse, searchMovies } from '../data/api';
-import MovieCard from '../ui/movie-card';
+import useSearchMovies from '../data/hooks/useSearchMovies';
+import useSearchQuery from '../data/hooks/useSearchQuery';
 import SearchField from '../ui/search-field';
+import MovieGrid from '../widgets/movie-grid';
 
 const Home = () => {
-  const [searchResponse, setSearchResponse] = useState<
-    SearchResponse | undefined
-  >();
+  const { queryText, queryPage, setQueryPage, setQueryText } = useSearchQuery();
+  const { data, isLoading } = useSearchMovies(queryText, queryPage);
 
   return (
-    <Container maxWidth="xl">
+    <Box>
       <SearchField
-        value=""
-        onChange={(newValue) => {
-          if (!newValue) {
-            return;
-          }
-
-          searchMovies(newValue).then((response) => {
-            setSearchResponse(response);
-          });
-        }}
+        loading={isLoading}
+        value={queryText}
+        onChange={(newValue) => setQueryText(newValue)}
       />
 
       <Divider sx={{ margin: 2 }} />
-
-      {searchResponse && (
-        <Grid container spacing={1}>
-          {searchResponse.results?.map((item) => {
-            if (!item.poster_path) {
-              return null;
-            }
-
-            return (
-              <Grid key={item.id} item xs={6} md={4} xl={3}>
-                <MovieCard
-                  data={{
-                    id: item.id,
-                    original_language: item.original_language,
-                    original_title: item.original_language,
-                    poster_path: item.poster_path,
-                    title: item.title,
-                  }}
-                />
-              </Grid>
-            );
-          })}
-        </Grid>
+      {data && <MovieGrid movies={data.results || []} />}
+      <Divider sx={{ margin: 2 }} />
+      {data && (
+        <Box justifyContent="center" display="flex">
+          <Pagination
+            page={queryPage}
+            count={data.total_pages}
+            variant="outlined"
+            shape="rounded"
+            onChange={(e, page) => {
+              setQueryPage(page);
+            }}
+          />
+        </Box>
       )}
-    </Container>
+    </Box>
   );
 };
 
