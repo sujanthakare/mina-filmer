@@ -1,15 +1,20 @@
 import React, { useEffect, useRef, useState } from 'react';
 
-import _ from 'lodash';
+import { debounce } from 'lodash';
 
-import { TextField } from '@mui/material';
+import { CircularProgress, InputAdornment, TextField } from '@mui/material';
 
 type SearchFieldProps = {
   value: string;
   onChange?: (newValue: string) => void;
+  loading?: boolean;
 };
 
-const SearchField = ({ value, onChange = () => {} }: SearchFieldProps) => {
+const SearchField = ({
+  value,
+  onChange = () => {},
+  loading,
+}: SearchFieldProps) => {
   const [fieldValue, setFieldValue] = useState(value);
 
   useEffect(() => {
@@ -17,7 +22,7 @@ const SearchField = ({ value, onChange = () => {} }: SearchFieldProps) => {
   }, [value]);
 
   const debouncedHandleChange = useRef(
-    _.debounce(onChange, 700, { maxWait: 2000 })
+    debounce(onChange, 700, { maxWait: 2000 })
   );
 
   return (
@@ -30,6 +35,13 @@ const SearchField = ({ value, onChange = () => {} }: SearchFieldProps) => {
       }}
       variant="outlined"
       fullWidth
+      InputProps={{
+        endAdornment: (
+          <InputAdornment position="start" sx={{ marginRight: 2 }}>
+            {loading && <CircularProgress size={20} />}
+          </InputAdornment>
+        ),
+      }}
     />
   );
 };
