@@ -1,4 +1,6 @@
-import { Grid } from '@mui/material';
+import { TransitionGroup } from 'react-transition-group';
+
+import { Fade, Grid } from '@mui/material';
 
 import useFavorites from '../../data/hooks/useFavorites';
 import useWatchList from '../../data/hooks/useWatchList';
@@ -18,8 +20,8 @@ const MovieGrid = ({ movies = [] }: Props) => {
   }
 
   return (
-    <Grid container spacing={1}>
-      {movies.map((item) => {
+    <Grid container spacing={1} component={TransitionGroup} pb={10}>
+      {movies.map((item, index) => {
         if (!item.poster_path) {
           return null;
         }
@@ -33,29 +35,31 @@ const MovieGrid = ({ movies = [] }: Props) => {
         );
 
         return (
-          <Grid key={item.id} item xs={6} md={3} xl={3}>
-            <MovieCard
-              movie={{
-                id: item.id,
-                title: item.title,
-                poster_path: item.poster_path,
-              }}
-              favorite={isFavorite}
-              watchLater={isInWatchList}
-              onFavoriteClick={() => {
-                if (isFavorite) {
-                  return removeFavorite(item);
-                }
-                addFavorite(item);
-              }}
-              onWatchLaterClick={() => {
-                if (isInWatchList) {
-                  return removeFromWatchList(item);
-                }
-                addToWatchList(item);
-              }}
-            />
-          </Grid>
+          <Fade in key={item.id}>
+            <Grid item xs={6} md={3} xl={3}>
+              <MovieCard
+                movie={{
+                  id: item.id,
+                  title: item.title,
+                  poster_path: item.poster_path,
+                }}
+                favorite={isFavorite}
+                watchLater={isInWatchList}
+                onFavoriteClick={() => {
+                  if (isFavorite) {
+                    return removeFavorite(item);
+                  }
+                  addFavorite(item);
+                }}
+                onWatchLaterClick={() => {
+                  if (isInWatchList) {
+                    return removeFromWatchList(item);
+                  }
+                  addToWatchList(item);
+                }}
+              />
+            </Grid>
+          </Fade>
         );
       })}
     </Grid>

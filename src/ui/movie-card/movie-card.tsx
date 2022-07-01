@@ -1,6 +1,7 @@
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import WatchLaterIcon from '@mui/icons-material/WatchLater';
 import { Box, Card, CardMedia, IconButton } from '@mui/material';
+import { grey } from '@mui/material/colors';
 
 type Props = {
   movie: { title: string; poster_path: string; id: number };
@@ -20,7 +21,7 @@ const MovieCard = ({
   return (
     <Card
       data-testid="movie-card"
-      sx={{ height: '100%', position: 'relative' }}
+      sx={{ height: '100%', position: 'relative', backgroundColor: grey[600] }}
     >
       <CardMedia
         component="img"
