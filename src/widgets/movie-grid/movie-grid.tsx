@@ -33,7 +33,7 @@ const MovieGrid = ({ movies = [] }: Props) => {
         );
 
         return (
-          <Grid key={item.id} item xs={6} md={4} xl={3}>
+          <Grid key={item.id} item xs={6} md={3} xl={3}>
             <MovieCard
               movie={{
                 id: item.id,
