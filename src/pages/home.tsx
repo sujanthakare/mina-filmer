@@ -46,7 +46,10 @@ const Home = () => {
       <SearchField
         loading={isLoading}
         value={queryText}
-        onChange={(newValue) => setQueryText(newValue)}
+        onChange={(newValue) => {
+          setQueryText(newValue);
+          setQueryPage(1);
+        }}
       />
 
       <Divider sx={{ margin: 2 }} />
