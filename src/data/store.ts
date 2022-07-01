@@ -9,34 +9,35 @@ import {
 
 import queryApi from './query-api';
 
-const lazyReducers = {} as Record<string, Reducer<any>>;
-const combineAppReducer = () => {
-  const defaultReducers = {
-    [queryApi.reducerPath]: queryApi.reducer,
-  };
-
-  return combineReducers({
-    ...defaultReducers,
-    ...lazyReducers,
-  });
+const defaultReducers = {
+  [queryApi.reducerPath]: queryApi.reducer,
 };
 
 export const injectLazyReducer = (
-  currentStore: Store,
+  currentStore: Store & { lazyReducers?: Record<string, Reducer<any>> },
   reducerMap: {
     key: string;
     reducer: Reducer<any>;
   }
 ) => {
-  if (lazyReducers[reducerMap.key]) {
+  if (!currentStore.lazyReducers) {
+    currentStore.lazyReducers = {};
+  }
+
+  if (currentStore.lazyReducers[reducerMap.key]) {
     return;
   }
-  lazyReducers[reducerMap.key] = reducerMap.reducer;
-  currentStore.replaceReducer(combineAppReducer());
+  currentStore.lazyReducers[reducerMap.key] = reducerMap.reducer;
+  currentStore.replaceReducer(
+    combineReducers({
+      ...defaultReducers,
+      ...currentStore.lazyReducers,
+    })
+  );
 };
 
 const store = configureStore({
-  reducer: combineAppReducer(),
+  reducer: combineReducers({ ...defaultReducers }),
   devTools: true,
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat(queryApi.middleware),
