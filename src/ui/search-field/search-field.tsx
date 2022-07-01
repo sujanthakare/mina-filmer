@@ -28,6 +28,7 @@ const SearchField = ({
   return (
     <TextField
       value={fieldValue}
+      aria-label="Search movies"
       placeholder="Search movies"
       onChange={(e) => {
         setFieldValue(e.target.value);
@@ -35,6 +36,7 @@ const SearchField = ({
       }}
       variant="outlined"
       fullWidth
+      inputProps={{ 'data-testId': 'search-field' }}
       InputProps={{
         endAdornment: (
           <InputAdornment position="start" sx={{ marginRight: 2 }}>
