@@ -1,4 +1,4 @@
-import { Box, Divider, Pagination } from '@mui/material';
+import { Box, CircularProgress, Divider, Pagination } from '@mui/material';
 
 import useSearchMovies from '../data/hooks/useSearchMovies';
 import useSearchQuery from '../data/hooks/useSearchQuery';
@@ -9,19 +9,24 @@ const Home = () => {
   const { queryText, queryPage, setQueryPage, setQueryText } = useSearchQuery();
   const { data, isLoading } = useSearchMovies(queryText, queryPage);
 
-  return (
-    <Box>
-      <SearchField
-        loading={isLoading}
-        value={queryText}
-        onChange={(newValue) => setQueryText(newValue)}
-      />
+  const renderMovies = () => {
+    if (!data) {
+      return null;
+    }
 
-      <Divider sx={{ margin: 2 }} />
-      {data && <MovieGrid movies={data.results || []} />}
-      <Divider sx={{ margin: 2 }} />
-      {data && (
-        <Box justifyContent="center" display="flex">
+    if (isLoading) {
+      return (
+        <Box sx={{ width: '100%', display: 'flex', justifyContent: 'center' }}>
+          <CircularProgress />;
+        </Box>
+      );
+    }
+
+    return (
+      <>
+        <MovieGrid movies={data.results} />
+        <Divider sx={{ margin: 2 }} />
+        <Box justifyContent="center" display="flex" pb={5}>
           <Pagination
             page={queryPage}
             count={data.total_pages}
@@ -32,7 +37,20 @@ const Home = () => {
             }}
           />
         </Box>
-      )}
+      </>
+    );
+  };
+
+  return (
+    <Box>
+      <SearchField
+        loading={isLoading}
+        value={queryText}
+        onChange={(newValue) => setQueryText(newValue)}
+      />
+
+      <Divider sx={{ margin: 2 }} />
+      {renderMovies()}
     </Box>
   );
 };
