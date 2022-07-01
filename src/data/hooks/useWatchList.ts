@@ -23,8 +23,10 @@ const watchListSlice = createSlice({
   initialState: StorageService.get<Array<IMovie>>(WATCH_LIST) || [],
   reducers: {
     addItem: (state, { payload }: PayloadAction<IMovie>) => {
-      state.push(payload);
-      StorageService.save(WATCH_LIST, state);
+      if (!state.some((item) => item.id === payload.id)) {
+        state.push(payload);
+        StorageService.save(WATCH_LIST, state);
+      }
     },
     removeItem: (state, { payload }: PayloadAction<IMovie>) => {
       const newState = state.filter((item) => item.id !== payload.id);
