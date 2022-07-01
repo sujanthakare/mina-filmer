@@ -1,0 +1,36 @@
+import { IMovie } from '../../data/types';
+
+export const mockedMovies: Array<IMovie> = [
+  {
+    adult: false,
+    backdrop_path: '/w2PMyoyLU22YvrGK3smVM9fW1jj.jpg',
+    genre_ids: [28, 12, 878],
+    id: 1,
+    original_language: 'en',
+    original_title: 'Captain Marvel',
+    overview: 'The story follows Carol Danvers',
+    popularity: 114.932,
+    poster_path: '/AtsgWhDnHTq68L0lLsUrCnM7TjG.jpg',
+    release_date: '2019-03-06',
+    title: 'Captain Marvel',
+    video: false,
+    vote_average: 6.9,
+    vote_count: 13189,
+  },
+  {
+    adult: false,
+    backdrop_path: '/w2PMyoyLU22YvrGK3smVM9fW1jj.jpg',
+    genre_ids: [28, 12, 878],
+    id: 2,
+    original_language: 'en',
+    original_title: 'Captain Marvel',
+    overview: 'The story follows Carol Danvers',
+    popularity: 114.932,
+    poster_path: '/AtsgWhDnHTq68L0lLsUrCnM7TjG.jpg',
+    release_date: '2019-03-06',
+    title: 'Captain Marvel',
+    video: false,
+    vote_average: 6.9,
+    vote_count: 13189,
+  },
+];
