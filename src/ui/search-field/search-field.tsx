@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 import { debounce } from 'lodash';
 
@@ -36,7 +36,7 @@ const SearchField = ({
       }}
       variant="outlined"
       fullWidth
-      inputProps={{ 'data-testId': 'search-field' }}
+      inputProps={{ 'data-testid': 'search-field' }}
       InputProps={{
         endAdornment: (
           <InputAdornment position="start" sx={{ marginRight: 2 }}>
