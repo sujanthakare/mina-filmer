@@ -8,11 +8,20 @@ exports[`Header should match snapshot 1`] = `
     <div
       class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-18 css-1i2jdp9-MuiGrid-root"
     >
-      <p
-        class="MuiTypography-root MuiTypography-body1 css-11byt1f-MuiTypography-root"
+      <div
+        class="css-15d7oug-MuiStack-root"
       >
-        Mina Filmer
-      </p>
+        <img
+          alt="logo"
+          height="30"
+          src="/logo512.png"
+        />
+        <p
+          class="MuiTypography-root MuiTypography-body1 css-11byt1f-MuiTypography-root"
+        >
+          Mina Filmer
+        </p>
+      </div>
     </div>
     <div
       class="MuiGrid-root MuiGrid-item css-13i4rnv-MuiGrid-root"
