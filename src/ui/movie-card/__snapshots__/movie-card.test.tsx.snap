@@ -3,16 +3,16 @@
 exports[`MovieCard should match snapshot if movie is marked as favorite and watch later 1`] = `
 <div>
   <div
-    class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 MuiCard-root css-bhp9pd-MuiPaper-root-MuiCard-root"
+    class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 MuiCard-root css-4d2fka-MuiPaper-root-MuiCard-root"
     data-testid="movie-card"
   >
     <img
       alt="TITLE"
-      class="MuiCardMedia-root MuiCardMedia-media MuiCardMedia-img css-o69gx8-MuiCardMedia-root"
+      class="MuiCardMedia-root MuiCardMedia-media MuiCardMedia-img css-1v6kh5a-MuiCardMedia-root"
       src="https://image.tmdb.org/t/p/original/POST_PATH"
     />
     <div
-      class="MuiCardActions-root MuiCardActions-spacing css-1t6e9jv-MuiCardActions-root"
+      class="card-actions MuiBox-root css-c66xk3"
     >
       <button
         aria-label="Mark favorite"
@@ -66,16 +66,16 @@ exports[`MovieCard should match snapshot if movie is marked as favorite and watc
 exports[`MovieCard should match snapshot with movie 1`] = `
 <div>
   <div
-    class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 MuiCard-root css-bhp9pd-MuiPaper-root-MuiCard-root"
+    class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 MuiCard-root css-4d2fka-MuiPaper-root-MuiCard-root"
     data-testid="movie-card"
   >
     <img
       alt="TITLE"
-      class="MuiCardMedia-root MuiCardMedia-media MuiCardMedia-img css-o69gx8-MuiCardMedia-root"
+      class="MuiCardMedia-root MuiCardMedia-media MuiCardMedia-img css-1v6kh5a-MuiCardMedia-root"
       src="https://image.tmdb.org/t/p/original/POST_PATH"
     />
     <div
-      class="MuiCardActions-root MuiCardActions-spacing css-1t6e9jv-MuiCardActions-root"
+      class="card-actions MuiBox-root css-c66xk3"
     >
       <button
         aria-label="Mark favorite"

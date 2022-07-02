@@ -21,7 +21,7 @@ const MovieGrid = ({ movies = [] }: Props) => {
 
   return (
     <Grid container spacing={1} component={TransitionGroup} pb={10}>
-      {movies.map((item, index) => {
+      {movies.map((item) => {
         if (!item.poster_path) {
           return null;
         }
