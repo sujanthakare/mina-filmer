@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 
 import SearchIcon from '@mui/icons-material/SearchRounded';
-import { Button, Grid, Typography } from '@mui/material';
+import { Button, Grid, Stack, Typography } from '@mui/material';
 
 const Header = () => {
   return (
@@ -13,9 +13,12 @@ const Header = () => {
       sx={{ mb: 2 }}
     >
       <Grid item xs={18}>
-        <Typography fontWeight="bold" fontSize={23} textAlign="center">
-          Mina Filmer
-        </Typography>
+        <Stack direction="row" justifyContent="center" spacing={1}>
+          <img height={30} src="/logo512.png" alt="logo" />
+          <Typography fontWeight="bold" fontSize={23} textAlign="center">
+            Mina Filmer
+          </Typography>
+        </Stack>
       </Grid>
       <Grid item>
         <Button

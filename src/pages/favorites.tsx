@@ -9,7 +9,7 @@ const Favorites = () => {
   return (
     <>
       <Typography component="h1" fontWeight="bold">
-        FAVORITE
+        FAVORITES
       </Typography>
       <Divider sx={{ m: 1 }} />
 
